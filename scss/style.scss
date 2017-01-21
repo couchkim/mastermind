@@ -8,5 +8,63 @@
 @import 'header';
 
 body{
-    background-color: mediumpurple;
+    background-color: mediumvioletred;
+    
 }
+
+
+header{
+        h1{
+         text-align: center;
+         font-family: 'Monoton', cursive;
+       
+    }
+}
+
+main{
+    margin-left: 40%;
+    h2{
+        font-family: 'Monoton', cursive;
+    }
+
+    #guess{
+        display:block;
+        padding: 15px;
+    }
+
+
+    ul{
+        list-style: none;
+        
+        li{
+            margin-left: 0;
+        }
+    }
+
+    button{
+        padding: 15px;
+        border: 2px solid black;
+        background-color: violet;  
+        display: block;
+        margin-top: 15px;
+        font-family: 'Monoton', cursive;
+  
+    }
+}
+
+footer{
+    margin-left: 40%;
+    button{
+        padding: 15px;
+        border: 2px solid black;
+        background-color: violet; 
+        font-family: 'Monoton', cursive;
+    
+    }
+}
+
+
+
+
+
+
