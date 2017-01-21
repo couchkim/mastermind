@@ -1,1 +1,1 @@
-# mastermind
+# updated-project-starter
