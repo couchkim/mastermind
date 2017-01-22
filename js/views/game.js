@@ -4,12 +4,11 @@ module.exports = Backbone.View.extend({
     },
 
     events:{
-        'click #check': showGame,
+        'click #check': checkGuess,
     },
 
     showGame: function(){
-        console.log('peas, love em');
-        this.model.showGame();
+        this.model.();
     },
 
     render: function(){

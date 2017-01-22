@@ -18,7 +18,7 @@ module.exports = Backbone.Model.extend({
         let request = new XMLHttpRequest();
         request.open('POST', 'needurl');
         let body = JSON.stringify()({
-            guesses: guesses.guess[guessNumber],
+            data: guesses.guess[guessNumber],
         })
 // when we get the answer back, we will render the info to the DOM
 // and clear out the guess input box.  We will use her index to 
