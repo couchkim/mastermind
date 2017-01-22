@@ -17,6 +17,15 @@ module.exports = Backbone.View.extend({
     // Display Turn number using her indices
     // Display all guesses and indicators in turn order
     
+     document.querySelector('#guess').value = '';
+    
+    let parent = document.querySelector('#gameRows');
+    let template = document.querySelector('#game-row');
+    let child = document.createElement('li');
+    
+    child.innerHTML = Mustache.render(template.innerHTML, {
+
+    })
     }
 
 })

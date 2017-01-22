@@ -1,8 +1,41 @@
+Backbone.sync = function (method, model){
+    
+    if(method === 'create' || method === 'update'){
+
+        if (model.get("turn") === 0) {
+            const request = new XMLHttpRequest();
+            // do new game stuff
+        } else {
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'needurl');
+        request.addEventListener('load', function(){
+            let response = JSON.parse(request.responseText);
+
+            model.trigger('change');
+        });
+            let body = JSON.stringify()({
+                 data: model.get('guesses.guess[guessNumber]'),
+        })
+        // when we get the answer back, we will render the info to the DOM
+        // and clear out the guess input box.  We will use her index to 
+        // increase the turn default. 
+
+        request.send(body);
+        }
+    }
+}
+
 module.exports = Backbone.Model.extend({
     defaults: {
         turn: 0,
         guesses: {
         }
+    },
+
+    reset: function() {
+        this.set('turn', 0);
+        this.save();
     },
 
     // when get check  is clicked, it calls check Guess.  We push the current
@@ -13,7 +46,7 @@ module.exports = Backbone.Model.extend({
     checkGuess: function () {
         let stringGuess = document.querySelector('#guess').value;
         let guess = stringGuess.split("").toLowerCase;
-        
+
     //   converting our color letter into a number for post to Grace
 
         for (let i = 0; i < guess.length; i++) {
@@ -43,21 +76,8 @@ module.exports = Backbone.Model.extend({
             }
         }
         guesses.push(guess);
-        let guessNumber = this.turn;
-        let request = new XMLHttpRequest();
-        request.open('POST', 'needurl');
-        let body = JSON.stringify()({
-            data: guesses.guess[guessNumber],
-        })
-        // when we get the answer back, we will render the info to the DOM
-        // and clear out the guess input box.  We will use her index to 
-        // increase the turn default. 
-
-        request.addEventListener('load', function () {
-            this.views.showGame();
-        })
-
-        document.querySelector('#guess').value = '';
-        request.send(body);
+        let guessNumber = this.get('turn');
+        
     }
-})
+
+});
