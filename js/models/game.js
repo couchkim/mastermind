@@ -12,7 +12,33 @@ module.exports = Backbone.Model.extend({
 
     checkGuess: function (){
         let stringGuess = document.querySelector('#guess').value;
-        let guess = stringGuess.split("");
+        let guess = stringGuess.split("").toLowerCase;
+        for (let i = 0; i<guess.length; i++){
+            if(guess[i]==='r'){
+                guess[i]= 0
+            }
+            if(guess[i]==='o'){
+                guess[i]= 1
+            }
+            if(guess[i]==='y'){
+                guess[i]= 2
+            }
+            if(guess[i]==='w'){
+                guess[i]= 3
+            }
+            if(guess[i]==='b'){
+                guess[i]= 4
+            }
+            if(guess[i]==='g'){
+                guess[i]= 5
+            }
+            if(guess[i]==='t'){
+                guess[i]= 6
+            }
+            if(guess[i]==='p'){
+                guess[i]= 7
+            }
+        }
         guesses.push(guess);
         let guessNumber = this.turn;
         let request = new XMLHttpRequest();
