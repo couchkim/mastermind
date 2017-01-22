@@ -12,7 +12,11 @@ module.exports = Backbone.View.extend({
     },
 
     render: function showGame(){
-        // mustache stuff
+    //   Get Grace's data.  Convert 'play' data to letters
+    //     Convert indicators to 'close' and 'correct'
+    // Display Turn number using her indices
+    // Display all guesses and indicators in turn order
+    
     }
 
 })
