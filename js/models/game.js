@@ -2,35 +2,45 @@ Backbone.sync = function (method, model){
     
     if(method === 'create' || method === 'update'){
 
-        if (model.get("turn") === 0) {
-            const request = new XMLHttpRequest();
-            // do new game stuff
-        } else {
+        // if (model.get("turn") === 0) {
+        //     const request = new XMLHttpRequest();
+        //     // do new game stuff
+        // } else {
 
         let request = new XMLHttpRequest();
-        request.open('POST', 'needurl');
+        request.open('POST', 'https://limitless-earth-22097.herokuapp.com/');
         request.addEventListener('load', function(){
             let response = JSON.parse(request.responseText);
-
+            model.set('indicators', response.indicators);
             model.trigger('change');
+            let newTurn = model.get('turn') + 1;
+             model.set('turn', newTurn);
         });
-            let body = JSON.stringify()({
-                 data: model.get('guesses.guess[guessNumber]'),
+            let body = JSON.stringify({
+                 play: model.get('numberGuesses.guess[guessNumber]'),
         })
         // when we get the answer back, we will render the info to the DOM
         // and clear out the guess input box.  We will use her index to 
         // increase the turn default. 
-
+        
         request.send(body);
         }
     }
-}
+
 
 module.exports = Backbone.Model.extend({
     defaults: {
         turn: 0,
-        guesses: {
-        }
+        colorGuesses: {
+
+        },
+        numberGuesses:{
+
+        },
+        indicators: {
+
+        },
+
     },
 
     reset: function() {
@@ -43,39 +53,40 @@ module.exports = Backbone.Model.extend({
     // object and then send Grace the current turn's guess only
     // in an array format.  
 
-    checkGuess: function () {
-        let stringGuess = document.querySelector('#guess').value;
-        let guess = stringGuess.split("").toLowerCase;
+    checkGuess: function (input) {
+        
+        let guess = input.split("").toLowerCase;
+        colorGuesses.push(guess);
 
     //   converting our color letter into a number for post to Grace
 
         for (let i = 0; i < guess.length; i++) {
             if (guess[i] === 'r') {
-                guess[i] = 0
-            }
-            if (guess[i] === 'o') {
                 guess[i] = 1
             }
-            if (guess[i] === 'y') {
+            if (guess[i] === 'o') {
                 guess[i] = 2
             }
-            if (guess[i] === 'w') {
+            if (guess[i] === 'y') {
                 guess[i] = 3
             }
-            if (guess[i] === 'b') {
+            if (guess[i] === 'w') {
                 guess[i] = 4
             }
-            if (guess[i] === 'g') {
+            if (guess[i] === 'b') {
                 guess[i] = 5
             }
-            if (guess[i] === 't') {
+            if (guess[i] === 'g') {
                 guess[i] = 6
             }
-            if (guess[i] === 'p') {
+            if (guess[i] === 't') {
                 guess[i] = 7
             }
+            if (guess[i] === 'p') {
+                guess[i] = 8
+            }
         }
-        guesses.push(guess);
+        numberGuesses.push(guess);
         let guessNumber = this.get('turn');
         
     }

@@ -4,28 +4,41 @@ module.exports = Backbone.View.extend({
     },
 
     events:{
-        'click #check': addGuess,
+        'click #check': 'addGuess',
+        'click #start': 'newGame',
     },
 
     addGuess: function(){
-        this.model.checkGuess();
+        let stringGuess = document.querySelector('#guess').value;
+        this.model.checkGuess(stringGuess);
     },
 
-    render: function showGame(){
-    //   Get Grace's data.  Convert 'play' data to letters
+    newGame: function(){
+        this.model.reset();
+    },
+
+    render: function (){
+    //   Get Grace's data.  Clear the DOM.  Convert 'play' data to letters
     //     Convert indicators to 'close' and 'correct'
     // Display Turn number using her indices
     // Display all guesses and indicators in turn order
     
      document.querySelector('#guess').value = '';
-    
+     document.querySelector('#gameRows').value = '';
+
     let parent = document.querySelector('#gameRows');
     let template = document.querySelector('#game-row');
     let child = document.createElement('li');
     
     child.innerHTML = Mustache.render(template.innerHTML, {
+            turnNumber: 
+            position0:,
+            position1:,
+            position2:,
+            position3:,
+            pegs:
 
-    })
+        })
     }
 
 })
