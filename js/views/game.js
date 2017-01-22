@@ -4,14 +4,14 @@ module.exports = Backbone.View.extend({
     },
 
     events:{
-        'click #check': checkGuess,
+        'click #check': addGuess,
     },
 
-    showGame: function(){
-        this.model.();
+    addGuess: function(){
+        this.model.checkGuess();
     },
 
-    render: function(){
+    render: function showGame(){
         // mustache stuff
     }
 
