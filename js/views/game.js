@@ -9,7 +9,7 @@ module.exports = Backbone.View.extend({
     },
 
     addGuess: function(){
-        let stringGuess = document.querySelector('#guess').value.toLowerCase();
+        let stringGuess = this.el.querySelector('#guess').value.toLowerCase();
         this.model.checkGuess(stringGuess);
     },
 
@@ -24,22 +24,27 @@ module.exports = Backbone.View.extend({
     // Display Turn number using her indices
     // Display all guesses and indicators in turn order
     
-     document.querySelector('#guess').value = '';
-     document.querySelector('#gameRows').value = '';
+     this.el.querySelector('#guess').value = '';
+     this.el.querySelector('#gameRows').value = '';
 
-    let parent = document.querySelector('#gameRows');
-    let template = document.querySelector('#game-row');
-    let child = document.createElement('li');
+    let parent = this.el.querySelector('#rowDisplay');
+    let template = this.el.querySelector('#game-row');
+    let child = this.el.createElement('li');
     
+    for (i=0; i<response.length; i++){
     child.innerHTML = Mustache.render(template.innerHTML, {
-            // turnNumber: DS,
-            position0: model.get('colorGuesses.guess[turnNumber[1]]'),
-            position1: model.get('colorGuesses.guess[turnNumber[2]]'),
-            position2: model.get('colorGuesses.guess[turnNumber[3]]'),
-            position3: model.get('colorGuesses.guess[turnNumber[4]]'),
-            // pegs:,
+             
+            turnNumber: response.index,
+            pegs: response.indicators,
 
-        })
+            position0: this.model.get('colorGuesses.guess[0])'),
+            position1: this.model.get('colorGuesses.guess[1]'),
+            position2: this.model.get('colorGuesses.guess[3]'),
+            position3: this.model.get('colorGuesses.guess[4]'),
+            
+
+    })
+    }
     }
 
 })

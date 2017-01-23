@@ -48,9 +48,12 @@ module.exports = Backbone.Model.extend({
     // in an array format.  
 
     checkGuess: function (input) {
-        
+
+        let colorGuesses = this.get('colorGuesses')
         let guess = input.split("");
-        this.get('colorGuesses').push(guess);
+        colorGuesses.push(guess);
+        this.set('colorGuesses', colorGuesses);
+        // this.trigger('change');
 
     //   converting our color letter into a number for post to Grace
 
@@ -80,8 +83,9 @@ module.exports = Backbone.Model.extend({
                 guess[i] = 8
             }
         }
-        this.get('numberGuesses').push(guess);
-        let guessNumber = this.get('turn');
+        let numberGuesses = this.get('numberGuesses')
+        numberGuesses.push(guess);
+        this.set('numberGuesses', numberGuesses);
         this.save();
     }
 
