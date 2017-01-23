@@ -14,9 +14,15 @@
 
     <script type="x-mustache-template" id="game-row">
        <div id = "row">
-               <h4>{{ turnNumber}}</h4>
-               <h3>{{ position0 }} {{ position1}}{{ position2}}{{ position3}}</h2>
-               <h4>{{ pegs }}</h4>
+               <h4>{{ turnNumber}}</h4> 
+              <div id = "buttons">
+                    <button>{{ position0 }}</button>
+                    <button>{{ position1 }}</button>
+                    <button>{{ position2 }}</button>
+                    <button>{{ position3 }}</button>
+             </div>
+                     <h4>{{ pegs }}</h4>
+     </div>
            </script>
 </head>
 
@@ -26,27 +32,41 @@
     </header>
 
     <main>
-        <section id = "rowDisplay">
-            <ul id = "gameRows"></ul>
-            </section>
+        <section id="rowDisplay">
+            <ul id="gameRows"></ul>
+        </section>
 
-        <h2>Make a Guess</h2>
-        <input type="text" id="guess" placeholder="type four colors">
-        <button id="check">Check Guess</button>
-        <ul id="colors">
-            <li>Red = r</li>
-            <li>Orange = o</li>
-            <li>Yellow = y</li>
-            <li>White = w</li>
-            <li>Blue = b</li>
-            <li>Green = g</li>
-            <li>Teal = t</li>
-            <li>Purple = p</li>
-        </ul>
+        <section id="makeGuess">
+            <h2>Make a Guess</h2>
+
+        </section>
+
+        <section id="checkRow">
+            <input type="text" id="guess" placeholder="type four colors">
+            <button id="check">Check Guess</button>
+
+        </section>
+
+        <section id="colorDisplay">
+            <div id="colors">
+                <div id="firstRow">
+                    <button class='red'>r</button>
+                    <button class='orange'>o</button>
+                    <button class='yellow'>y</button>
+                    <button class='white'>w</button>
+
+                </div>
+                <div id='secondRow'>
+                    <button class='blue'>b</button>
+                    <button class='green'>g</button>
+                    <button class='teal'>t</button>
+                    <button class='purple'>p</button>
+                </div>
+            </div>
+
+            <button id="start">Start New Game</button>
+
     </main>
-    <footer>
-        <button id="start">Start New Game</button>
-    </footer>
 
 </body>
 

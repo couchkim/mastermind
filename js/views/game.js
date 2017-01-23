@@ -31,12 +31,12 @@ module.exports = Backbone.View.extend({
     let child = document.createElement('li');
     
     child.innerHTML = Mustache.render(template.innerHTML, {
-            turnNumber: 
-            position0:,
-            position1:,
-            position2:,
-            position3:,
-            pegs:
+            turnNumber: DS,
+            position0: SD,
+            position1:sd,
+            position2:SD,
+            position3:sd,
+            pegs:A,
 
         })
     }
