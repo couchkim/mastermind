@@ -2,30 +2,33 @@ Backbone.sync = function (method, model){
     
     if (method === 'create' || method === 'update'){
 
-        // if (model.get("turn") === 0) {
-        //     const request = new XMLHttpRequest();
-        //     // do new game stuff
-        // } else {
-
+     
         let request = new XMLHttpRequest();
         request.open('POST', 'https://limitless-earth-22097.herokuapp.com/');
         request.addEventListener('load', function(){
             let response = JSON.parse(request.responseText);
-            model.set('indicators', response.indicators);
+            model.set('indicators', response);
+
+            // push into indicators array instead of replacing whole array
+
             model.trigger('change');
-            let newTurn = this.get('turn') + 1;
+            let newTurn = model.get('turn') + 1;
              model.set('turn', newTurn);
         });
-        let body = JSON.stringify({
-            play: this.get('numberGuesses.guess[guessNumber]'),
-        })
+        
+            console.log(model.get('numberGuesses')[model.get('turn')])
+        
+        let body = JSON.stringify(
+
+            model.get('numberGuesses')[model.get('turn')]
+        );
         // when we get the answer back, we will render the info to the DOM
         // and clear out the guess input box.  We will use her index to 
         // increase the turn default. 
         
         request.send(body);
-        }
-    }
+        };
+    };
 
 
 module.exports = Backbone.Model.extend({
@@ -39,6 +42,7 @@ module.exports = Backbone.Model.extend({
 
     reset: function() {
         this.set('turn', 0);
+        // reset all defaults to empty 
         this.save();
     },
 

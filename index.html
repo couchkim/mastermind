@@ -13,16 +13,18 @@
     <script src='app.js'></script>
 
     <script type="x-mustache-template" id="game-row">
-       <div id = "row">
-               <h4>{{ turnNumber}}</h4> 
+       
+               <h4>Turn {{ turnNumber }}</h4> 
               <div id = "buttons">
-                    <button>{{ position0 }}</button>
-                    <button>{{ position1 }}</button>
-                    <button>{{ position2 }}</button>
-                    <button>{{ position3 }}</button>
+                    <button class="color-{{position0}}">{{ position0 }}</button>
+                    <button class="color-{{position1}}">{{ position1 }}</button>
+                    <button class="color-{{position2}}">{{ position2 }}</button>
+                    <button class="color-{{position3}}">{{ position3 }}</button>
              </div>
                      <h4>{{ pegs }}</h4>
-     </div>
+
+                    //  can add a button that's same for every row for check game
+
            </script>
 </head>
 
@@ -46,24 +48,29 @@
         </section>
 
         <section id="colorDisplay">
+            <div id="colors1"></div>
             <div id="colors">
-                <div id="firstRow">
-                    <button class='red'>r</button>
-                    <button class='orange'>o</button>
-                    <button class='yellow'>y</button>
-                    <button class='white'>w</button>
+                <section id="firstRow">
+                    <button class='color-r'>r</button>
+                    <button class='color-o'>o</button>
+                    <button class='color-y'>y</button>
+                    <button class='color-w'>w</button>
 
-                </div>
-                <div id='secondRow'>
-                    <button class='blue'>b</button>
-                    <button class='green'>g</button>
-                    <button class='teal'>t</button>
-                    <button class='purple'>p</button>
-                </div>
+                </section>
+                <section id='secondRow'>
+                    <button class='color-b'>b</button>
+                    <button class='color-g'>g</button>
+                    <button class='color-t'>t</button>
+                    <button class='color-p'>p</button>
+                </section>
             </div>
-
+            <div id="colors2"></div>
+        </section>
+        <div id='startBtn'>
+            <div id='placeholder1'></div>
             <button id="start">Start New Game</button>
-
+            <div id='placeholder2'></div>
+        </div>
     </main>
 
 </body>

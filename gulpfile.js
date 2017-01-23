@@ -19,7 +19,7 @@ gulp.task('css', function(){
 });
 
 gulp.task('js', function(){
-    return gulp.src('js/*/*.js')
+    return gulp.src('js/**.js')
     .pipe(browser.browserify())
     .pipe(gulp.dest('public/'));
 });

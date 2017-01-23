@@ -25,26 +25,33 @@ module.exports = Backbone.View.extend({
     // Display all guesses and indicators in turn order
     
      this.el.querySelector('#guess').value = '';
-     this.el.querySelector('#gameRows').value = '';
+     this.el.querySelector('#rowDisplay').innerHTML= '';
 
     let parent = this.el.querySelector('#rowDisplay');
-    let template = this.el.querySelector('#game-row');
-    let child = this.el.createElement('li');
+    let template = document.querySelector('#game-row');
     
-    for (i=0; i<response.length; i++){
-    child.innerHTML = Mustache.render(template.innerHTML, {
+    // child is where this innerHTML goes:
+
+    for (let i=0; i<this.model.get('colorGuesses').length; i++){
+        let guess = this.model.get('colorGuesses')[i];
+        let indicator = this.model.get('indicators')[i];
+
+        let child = document.createElement('div');
+        child.setAttribute('id', 'row');
+        parent.appendChild(child);
+
+        child.innerHTML = Mustache.render(template.innerHTML, {
              
-            turnNumber: response.index,
-            pegs: response.indicators,
+            // turnNumber: response.index,
+            // pegs: response.indicators,
 
-            position0: this.model.get('colorGuesses.guess[0])'),
-            position1: this.model.get('colorGuesses.guess[1]'),
-            position2: this.model.get('colorGuesses.guess[3]'),
-            position3: this.model.get('colorGuesses.guess[4]'),
-            
-
-    })
-    }
+            position0: guess[0],
+            position1: guess[1],
+            position2: guess[2],
+            position3: guess[3],
+        
+             })
+        }
     }
 
 })
