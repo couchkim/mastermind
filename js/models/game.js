@@ -1,6 +1,6 @@
 Backbone.sync = function (method, model){
     
-    if(method === 'create' || method === 'update'){
+    if (method === 'create' || method === 'update'){
 
         // if (model.get("turn") === 0) {
         //     const request = new XMLHttpRequest();
@@ -13,11 +13,11 @@ Backbone.sync = function (method, model){
             let response = JSON.parse(request.responseText);
             model.set('indicators', response.indicators);
             model.trigger('change');
-            let newTurn = model.get('turn') + 1;
+            let newTurn = this.get('turn') + 1;
              model.set('turn', newTurn);
         });
-            let body = JSON.stringify({
-                 play: model.get('numberGuesses.guess[guessNumber]'),
+        let body = JSON.stringify({
+            play: this.get('numberGuesses.guess[guessNumber]'),
         })
         // when we get the answer back, we will render the info to the DOM
         // and clear out the guess input box.  We will use her index to 
@@ -31,15 +31,9 @@ Backbone.sync = function (method, model){
 module.exports = Backbone.Model.extend({
     defaults: {
         turn: 0,
-        colorGuesses: {
-
-        },
-        numberGuesses:{
-
-        },
-        indicators: {
-
-        },
+        colorGuesses: [],
+        numberGuesses:[],
+        indicators: [],
 
     },
 
@@ -55,8 +49,8 @@ module.exports = Backbone.Model.extend({
 
     checkGuess: function (input) {
         
-        let guess = input.split("").toLowerCase;
-        colorGuesses.push(guess);
+        let guess = input.split("");
+        this.get('colorGuesses').push(guess);
 
     //   converting our color letter into a number for post to Grace
 
@@ -86,9 +80,9 @@ module.exports = Backbone.Model.extend({
                 guess[i] = 8
             }
         }
-        numberGuesses.push(guess);
+        this.get('numberGuesses').push(guess);
         let guessNumber = this.get('turn');
-        
+        this.save();
     }
 
 });

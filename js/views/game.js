@@ -9,7 +9,7 @@ module.exports = Backbone.View.extend({
     },
 
     addGuess: function(){
-        let stringGuess = document.querySelector('#guess').value;
+        let stringGuess = document.querySelector('#guess').value.toLowerCase();
         this.model.checkGuess(stringGuess);
     },
 
@@ -18,8 +18,9 @@ module.exports = Backbone.View.extend({
     },
 
     render: function (){
-    //   Get Grace's data.  Clear the DOM.  Convert 'play' data to letters
-    //     Convert indicators to 'close' and 'correct'
+    // Get Grace's data.  Clear the DOM.  Convert 'play' data to letters
+    // Need to have her structure from her response.  Don't have that yet.
+    // Convert indicators to 'close' and 'correct'
     // Display Turn number using her indices
     // Display all guesses and indicators in turn order
     
@@ -31,12 +32,12 @@ module.exports = Backbone.View.extend({
     let child = document.createElement('li');
     
     child.innerHTML = Mustache.render(template.innerHTML, {
-            turnNumber: DS,
-            position0: SD,
-            position1:sd,
-            position2:SD,
-            position3:sd,
-            pegs:A,
+            // turnNumber: DS,
+            position0: model.get('colorGuesses.guess[turnNumber[1]]'),
+            position1: model.get('colorGuesses.guess[turnNumber[2]]'),
+            position2: model.get('colorGuesses.guess[turnNumber[3]]'),
+            position3: model.get('colorGuesses.guess[turnNumber[4]]'),
+            // pegs:,
 
         })
     }
