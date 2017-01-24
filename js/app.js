@@ -10,7 +10,19 @@ window.addEventListener('load', function (){
         model: game,
     })
     
-});
+    let reset = document.querySelector('#start');
+    reset.addEventListener('click', function(){
+        let request = new XMLHttpRequest();
+        request.open('POST', 'https://limitless-earth-22097.herokuapp.com/new-game');
+        request.setRequestHeader('Content-type', 'application/json');
+
+         model.trigger('change');
+        
+        request.send();
+    })
+})
+
+
 
 
 

@@ -46,6 +46,8 @@ module.exports = Backbone.Model.extend({
         numberGuesses: [],
         indicators: [],
 
+       
+
     },
 
     reset: function () {
@@ -60,43 +62,45 @@ module.exports = Backbone.Model.extend({
     // in an array format.  
 
     checkGuess: function (input) {
-
-        let colorGuesses = this.get('colorGuesses')
-        let guess = input.split("");
-        colorGuesses.push(guess);
+        console.log(this.get('indicators'));
+        let colorGuesses = this.get('colorGuesses');
+        let guess1 = input.split("");
+        let guess2 = input.split("");
+        colorGuesses.push(guess1);
         this.set('colorGuesses', colorGuesses);
+        console.log(colorGuesses);
         // this.trigger('change');
 
         //   converting our color letter into a number for post to Grace
 
-        for (let i = 0; i < guess.length; i++) {
-            if (guess[i] === 'r') {
-                guess[i] = 1
+        for (let i = 0; i < guess2.length; i++) {
+            if (guess2[i] === 'r') {
+                guess2[i] = 1
             }
-            if (guess[i] === 'o') {
-                guess[i] = 2
+            if (guess2[i] === 'o') {
+                guess2[i] = 2
             }
-            if (guess[i] === 'y') {
-                guess[i] = 3
+            if (guess2[i] === 'y') {
+                guess2[i] = 3
             }
-            if (guess[i] === 'w') {
-                guess[i] = 4
+            if (guess2[i] === 'w') {
+                guess2[i] = 4
             }
-            if (guess[i] === 'b') {
-                guess[i] = 5
+            if (guess2[i] === 'b') {
+                guess2[i] = 5
             }
-            if (guess[i] === 'g') {
-                guess[i] = 6
+            if (guess2[i] === 'g') {
+                guess2[i] = 6
             }
-            if (guess[i] === 't') {
-                guess[i] = 7
+            if (guess2[i] === 't') {
+                guess2[i] = 7
             }
-            if (guess[i] === 'p') {
-                guess[i] = 8
+            if (guess2[i] === 'p') {
+                guess2[i] = 8
             }
         }
         let numberGuesses = this.get('numberGuesses')
-        numberGuesses.push(guess);
+        numberGuesses.push(guess2);
         this.set('numberGuesses', numberGuesses);
         this.save();
     }

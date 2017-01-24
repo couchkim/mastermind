@@ -150,3 +150,30 @@ main{
        @include grid-column(4);
    }
 }
+
+#rowDisplay{
+    @include grid-row();
+}
+
+#row{
+    display:flex;
+    justify-content: space-around;
+    @include grid-column(12);
+
+    h2{
+        @include grid-column(3);
+    }
+
+    #buttons{
+    
+    display: flex;
+       justify-content: center;
+       margin: 10px;
+    }
+
+    h5{
+        @include grid-column(3);
+    }
+
+   
+}
