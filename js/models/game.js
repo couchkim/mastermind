@@ -18,6 +18,9 @@ Backbone.sync = function (method, model) {
             indicators.push(response.indicator);
             model.set('indicators', indicators);
 
+            let turnCount = model.get('turnsList')
+            turnCount.push(model.get('turn'));
+            model.set('turnsList', turnCount);
 
 
             // push into indicators array instead of replacing whole array
@@ -25,6 +28,7 @@ Backbone.sync = function (method, model) {
             model.trigger('change');
             let newTurn = model.get('turn') + 1;
             model.set('turn', newTurn);
+
         });
 
         console.log(model.get('numberGuesses')[model.get('turn')])
@@ -45,15 +49,19 @@ module.exports = Backbone.Model.extend({
         colorGuesses: [],
         numberGuesses: [],
         indicators: [],
-
+        turnsList: [],
        
 
     },
 
     reset: function () {
         this.set('turn', 0);
+        this.set('colorGuesses', []);
+        this.set('numberGuesses', []);
+        this.set('indicators', []);
+        this.set('turnsList', []);
         // reset all defaults to empty 
-        this.save();
+        model.trigger(change);
     },
 
     // when get check  is clicked, it calls check Guess.  We push the current
