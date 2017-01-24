@@ -42,8 +42,8 @@ module.exports = Backbone.View.extend({
 
         child.innerHTML = Mustache.render(template.innerHTML, {
              
-            // turnNumber: response.index,
-            // pegs: response.indicators,
+            turnNumber: this.model.get('turn'),
+            pegs: indicator[i],
 
             position0: guess[0],
             position1: guess[1],
